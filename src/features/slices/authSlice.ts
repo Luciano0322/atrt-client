@@ -30,10 +30,10 @@ const authSlice = createSlice({
       state.rt = action.payload.rt;
     },
     clearCredentials: (state: AuthState) => {
+      localStorage.removeItem("user");
       state.user = undefined;
       state.token = undefined;
       state.rt = undefined;
-      localStorage.removeItem("user");
     } 
   }
 })
