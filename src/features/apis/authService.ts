@@ -18,10 +18,27 @@ export const authService = rootApi.injectEndpoints({
     //   }),
     //   invalidatesTags: [{type: "AuthService", id: "REGISTER"}]
     // })
+    refresh: builder.mutation<UserResponse, string>({
+      query: (rt) => ({
+        url: "auth/refresh",
+        headers: {"authorization": "Bearer " + rt },
+        method: "Post"
+      }),
+      invalidatesTags: [{type: "AuthService", id: "REFRESH"}]
+    }),
+    logout: builder.mutation<any, void>({
+      query: () => ({
+        url: "auth/logout",
+        method: "POST",
+      }),
+      invalidatesTags: [{type: "AuthService", id: "LOGOUT"}]
+    }),
   })
 })
 
 export const { 
   useLoginMutation, 
   // useRegisterMutation 
+  useLogoutMutation,
+  useRefreshMutation
 } = authService;

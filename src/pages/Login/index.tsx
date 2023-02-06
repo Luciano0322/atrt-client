@@ -24,9 +24,9 @@ const Login: FC = () => {
       const userInfo = {
         user: data.email, 
         token: res.access_token, 
+        rt: res.refresh_token
       }
-      
-      localStorage.setItem('user', JSON.stringify({...userInfo, rt: res.refresh_token}))
+      localStorage.setItem('user', JSON.stringify(userInfo))
       dispatch(setCredentials(userInfo))
     })
     .then(() => navigate('/', {replace: true}))

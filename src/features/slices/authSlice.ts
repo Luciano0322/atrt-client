@@ -4,6 +4,7 @@ import { RootState } from "../store";
 interface AuthState {
   user?: string;
   token?: string;
+  rt?: string;
 }
 
 const initialState = (): AuthState => {
@@ -15,6 +16,7 @@ const initialState = (): AuthState => {
   return {
     user: undefined,
     token: undefined,
+    rt: undefined,
   }
 }
 
@@ -22,13 +24,15 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setCredentials: (state: AuthState, action: PayloadAction<{user: string; token: string;}>) => {
+    setCredentials: (state: AuthState, action: PayloadAction<{user: string; token: string; rt: string}>) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
+      state.rt = action.payload.rt;
     },
     clearCredentials: (state: AuthState) => {
       state.user = undefined;
       state.token = undefined;
+      state.rt = undefined;
       localStorage.removeItem("user");
     } 
   }
